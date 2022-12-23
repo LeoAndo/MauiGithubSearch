@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.idea
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -348,3 +349,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Xamarin
+Resource.designer.cs
+6.0/Apps/WeatherTwentyOne/src/nuget.config
+6.0/Apps/WeatherTwentyOne/src/.editorconfig
+
+*.DS_Store
+*.zip
