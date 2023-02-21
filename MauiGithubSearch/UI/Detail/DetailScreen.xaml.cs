@@ -5,6 +5,12 @@
 [QueryProperty(nameof(RepoName), "repoName")]
 public partial class DetailScreen : ContentPage
 {
+    public static string buildRoute(string ownerName, string repoName)
+    {
+
+        return $"{nameof(DetailScreen)}?ownerName={ownerName}&repoName={repoName}";
+    }
+
 	public string OwnerName
 	{
 		set;

@@ -10,7 +10,7 @@ public partial class SearchScreen : ContentPage
 
     async void NextBtn_Clicked(System.Object sender, System.EventArgs e)
     {
-		var route = $"{nameof(DetailScreen)}?ownerName=flutter&repoName=repo";
-		await Shell.Current.GoToAsync(route);
+		var route = DetailScreen.buildRoute("flutter", "repo");
+        await Shell.Current.GoToAsync(route);
     }
 }
