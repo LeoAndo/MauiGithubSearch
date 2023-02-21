@@ -30,6 +30,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -49,4 +52,28 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Data\" />
+	  <None Remove="Domain\" />
+	  <None Remove="UI\" />
+	  <None Remove="UI\Search\" />
+	  <None Remove="UI\Detail\" />
+	  <None Remove="UI\Component\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Data\" />
+	  <Folder Include="Domain\" />
+	  <Folder Include="UI\" />
+	  <Folder Include="UI\Search\" />
+	  <Folder Include="UI\Detail\" />
+	  <Folder Include="UI\Component\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="UI\Search\SearchScreen.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Detail\DetailScreen.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
 </Project>
