@@ -13,6 +13,7 @@
                 Text="Github Search App"
                 FontSize="32"
                 HorizontalOptions="Center" />
+            <Button x:Name="NextBtn" Text="Go To Detail" Clicked="NextBtn_Clicked"/>
 
         </VerticalStackLayout>
     </ScrollView>
