@@ -26,13 +26,15 @@ public partial class DetailScreen : ContentPage
     public DetailScreen()
 	{
 		InitializeComponent();
-	}
+    }
 
-    async void BtnRefresh_Clicked(System.Object sender, System.EventArgs e)
+    /// <summary>
+    /// onCreateのイベント
+    /// </summary>
+    protected override void OnAppearing()
     {
+        base.OnAppearing();
         lblOwnerName.Text = OwnerName;
         lblRepoName.Text = RepoName;
-        string result = await new GithubApi().searchRepositories();
-        lblApiResult.Text = result;
     }
 }

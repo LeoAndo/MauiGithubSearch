@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,6 +63,10 @@
 	  <None Remove="Data\Api\" />
 	  <None Remove="Data\Api\Github\" />
 	  <None Remove="Data\Api\Github\Response\" />
+	  <None Remove="Domain\exception\" />
+	  <None Remove="Domain\Model\" />
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="CommunityToolkit.Maui.Core" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -73,6 +78,8 @@
 	  <Folder Include="Data\Api\" />
 	  <Folder Include="Data\Api\Github\" />
 	  <Folder Include="Data\Api\Github\Response\" />
+	  <Folder Include="Domain\exception\" />
+	  <Folder Include="Domain\Model\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">

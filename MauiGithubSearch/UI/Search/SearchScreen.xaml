@@ -2,19 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiGithubSearch.UI.Search.SearchScreen"
-             Title="SearchScreen">
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+             xmlns:vm="clr-namespace:MauiGithubSearch.UI.Search"
+             Title="SearchScreen"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True">
 
-            <Label
-                Text="Github Search App"
-                FontSize="32"
-                HorizontalOptions="Center" />
-            <Button x:Name="NextBtn" Text="Go To Detail" Clicked="NextBtn_Clicked"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:SearchViewModel x:Key="viewModel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        </VerticalStackLayout>
-    </ScrollView>
+    <VerticalStackLayout
+            Spacing="20"
+            Padding="16,0"
+        VerticalOptions="Center"
+        BindingContext="{StaticResource viewModel}">
+
+        <Button x:Name="NextBtn" Text="Go To Detail" Command="{Binding SearchRepositoriesCommand}" />
+        <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+            <!-- 1行のセルLayout - START-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" TextColor="DarkOrange" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+                            <Label Text="{Binding OwnerName}"   TextColor="DarkGreen" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <!-- 1行のセルLayout - END-->
+        </ListView>
+    </VerticalStackLayout>
 </ContentPage>

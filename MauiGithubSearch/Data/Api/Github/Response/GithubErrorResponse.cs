@@ -8,7 +8,6 @@ namespace MauiGithubSearch.Data.Api.Github.Response
 {
     public class GithubErrorResponse
     {
-        // 文字列型
         [JsonPropertyName("message")]
         public string Message { get; set; }
         [JsonPropertyName("documentation_url")]
