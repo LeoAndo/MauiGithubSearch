@@ -59,6 +59,9 @@
 	  <None Remove="UI\Search\" />
 	  <None Remove="UI\Detail\" />
 	  <None Remove="UI\Component\" />
+	  <None Remove="Data\Api\" />
+	  <None Remove="Data\Api\Github\" />
+	  <None Remove="Data\Api\Github\Response\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -67,6 +70,9 @@
 	  <Folder Include="UI\Search\" />
 	  <Folder Include="UI\Detail\" />
 	  <Folder Include="UI\Component\" />
+	  <Folder Include="Data\Api\" />
+	  <Folder Include="Data\Api\Github\" />
+	  <Folder Include="Data\Api\Github\Response\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">

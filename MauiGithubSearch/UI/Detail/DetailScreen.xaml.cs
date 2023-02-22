@@ -1,4 +1,5 @@
 ﻿namespace MauiGithubSearch.UI.Detail;
+using MauiGithubSearch.Data.Api.Github;
 
 // https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/shell/navigation?view=net-maui-7.0#pass-and-process-multiple-items-of-data
 [QueryProperty(nameof(OwnerName), "ownerName")]
@@ -11,7 +12,7 @@ public partial class DetailScreen : ContentPage
         return $"{nameof(DetailScreen)}?ownerName={ownerName}&repoName={repoName}";
     }
 
-	public string OwnerName
+    public string OwnerName
 	{
 		set;
 		get;
@@ -27,9 +28,11 @@ public partial class DetailScreen : ContentPage
 		InitializeComponent();
 	}
 
-    void BtnRefresh_Clicked(System.Object sender, System.EventArgs e)
+    async void BtnRefresh_Clicked(System.Object sender, System.EventArgs e)
     {
         lblOwnerName.Text = OwnerName;
         lblRepoName.Text = RepoName;
+        string result = await new GithubApi().searchRepositories();
+        lblApiResult.Text = result;
     }
 }

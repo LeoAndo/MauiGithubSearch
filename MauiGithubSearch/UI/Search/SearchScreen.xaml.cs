@@ -9,8 +9,7 @@ public partial class SearchScreen : ContentPage
 	}
 
     async void NextBtn_Clicked(System.Object sender, System.EventArgs e)
-    {
-		var route = DetailScreen.buildRoute("flutter", "repo");
-        await Shell.Current.GoToAsync(route);
+    {   
+        await Shell.Current.GoToAsync(DetailScreen.buildRoute("flutter", "repo"));
     }
 }
