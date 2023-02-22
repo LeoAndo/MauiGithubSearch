@@ -3,12 +3,25 @@ using UI.Detail;
 using MauiGithubSearch.Data.Api.Github;
 using MauiGithubSearch.Domain.Model;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 public partial class SearchScreen : ContentPage
 {
+    private readonly SearchViewModel viewModel;
+
     public SearchScreen()
 	{
 		InitializeComponent();
+        viewModel = new SearchViewModel();
+        BindingContext = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Console.WriteLine("call OnAppearing");
+        // await VM.LoadDataCommand.ExecuteAsync(null);
+        viewModel.SearchRepositoriesCommand.Execute(null);
     }
 
     async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

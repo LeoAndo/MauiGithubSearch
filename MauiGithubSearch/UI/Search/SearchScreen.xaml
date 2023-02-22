@@ -2,42 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiGithubSearch.UI.Search.SearchScreen"
-             xmlns:vm="clr-namespace:MauiGithubSearch.UI.Search"
              Title="SearchScreen"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True">
+    <AbsoluteLayout>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <vm:SearchViewModel x:Key="viewModel" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+        <!-- UiState: Success - START -->
+        <StackLayout x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16" Spacing="16" IsVisible="True">
+            <Entry x:Name="entry" Placeholder="please input search keyword" />
+            <ListView x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="Handle_ItemTapped" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" Detail="{Binding OwnerName}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <!-- UiState: Success - END -->
 
-    <VerticalStackLayout
-            Spacing="20"
-            Padding="16,0"
-        VerticalOptions="Center"
-        BindingContext="{StaticResource viewModel}">
+        <!-- UiState: Success データ０件 - START -->
+        <ContentView x:Name="emptyItemsLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="False">
+            <Label x:Name="lblEmptyItemsMsg" Text="empty Items" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </ContentView>
+        <!-- UiState: Success データ０件 - END -->
 
-        <Button x:Name="NextBtn" Text="Go To Detail" Command="{Binding SearchRepositoriesCommand}" />
-        <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-            <!-- 1行のセルLayout - START-->
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Name}" TextColor="DarkOrange" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-                            <Label Text="{Binding OwnerName}"   TextColor="DarkGreen" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <!-- 1行のセルLayout - END-->
-        </ListView>
-    </VerticalStackLayout>
+        <!-- UiState: Loading - START -->
+        <ContentView x:Name="loadingLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="False"
+                     BackgroundColor="#C0808080">
+
+            <ActivityIndicator x:Name="indicator"
+                               IsRunning="True"
+                         VerticalOptions="Center" />
+
+        </ContentView>
+        <!-- UiState: Loading - END -->
+
+        <!-- UiState: Error - START -->
+        <ContentView x:Name="errorLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="False">
+            <Label x:Name="lblErrorMsg" Text="error Message!!!!!!" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </ContentView>
+        <!-- UiState: Error - END -->
+
+    </AbsoluteLayout>
+
 </ContentPage>

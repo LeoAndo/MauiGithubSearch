@@ -28,9 +28,6 @@ public partial class DetailScreen : ContentPage
 		InitializeComponent();
     }
 
-    /// <summary>
-    /// onCreateのイベント
-    /// </summary>
     protected override void OnAppearing()
     {
         base.OnAppearing();
