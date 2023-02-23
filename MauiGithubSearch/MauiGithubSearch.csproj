@@ -75,6 +75,7 @@
 	  <None Remove="UI\Converter\" />
 	  <None Remove="Data\Api\Github\Response\FetchRepositoryDetail\" />
 	  <None Remove="Data\Api\Github\Response\SearchRepositories\" />
+	  <None Remove="UI\Search\Pagination\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -93,12 +94,16 @@
 	  <Folder Include="UI\Converter\" />
 	  <Folder Include="Data\Api\Github\Response\FetchRepositoryDetail\" />
 	  <Folder Include="Data\Api\Github\Response\SearchRepositories\" />
+	  <Folder Include="UI\Search\Pagination\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Detail\DetailScreen.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Search\Pagination\SearchPagingScreen.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>
