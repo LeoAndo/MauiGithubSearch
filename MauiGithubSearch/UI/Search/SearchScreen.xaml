@@ -31,19 +31,6 @@
         </ContentView>
         <!-- UiState: Success データ０件 - END -->
 
-        <!-- UiState: Loading - START -->
-        <ContentView x:Name="loadingLayout" 
-                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                     AbsoluteLayout.LayoutFlags="All"
-                     IsVisible="{Binding IsLoading}"
-                     BackgroundColor="#C0808080">
-
-            <ActivityIndicator x:Name="indicator"
-                               IsRunning="{Binding IsLoading}"/>
-
-        </ContentView>
-        <!-- UiState: Loading - END -->
-
         <!-- UiState: Error - START -->
         <ContentView x:Name="errorLayout"
                      AbsoluteLayout.LayoutBounds="0.5,0.5"
@@ -55,6 +42,18 @@
             </StackLayout>
         </ContentView>
         <!-- UiState: Error - END -->
+
+        <!-- UiState: Loading - START -->
+        <ContentView x:Name="loadingLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="{Binding IsLoading}">
+
+            <ActivityIndicator x:Name="indicator"
+                               IsRunning="{Binding IsLoading}" />
+
+        </ContentView>
+        <!-- UiState: Loading - END -->
 
     </AbsoluteLayout>
 
