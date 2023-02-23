@@ -8,10 +8,6 @@ using MauiGithubSearch.Domain.Model;
 
 namespace MauiGithubSearch.Data.Api.Github
 {
-    /// <summary>
-    ///  statuscode: https://github.com/microsoft/referencesource/blob/master/System/net/System/Net/HttpStatusCode.cs
-    ///  jsonの扱いはSystem.Text.Json が推奨されている : https://learn.microsoft.com/ja-jp/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?pivots=dotnet-7-0
-    /// </summary>
     public class GithubApi
     {
         private const string GITHUB_ACCESS_TOKEN = "";
@@ -39,7 +35,7 @@ namespace MauiGithubSearch.Data.Api.Github
             return await dataOrThrow<RepositoryDetailResponse>(new(HttpMethod.Get, url));
         }
 
-        private static GithubErrorResponse JsonToGithubErrorResponse(string json) => JsonSerializer.Deserialize<GithubErrorResponse>(json);
+        private static GithubErrorResponse JsonToGithubErrorResponse(string json) => JsonSerializer.Deserialize<GithubErrorResponse>(json)!;
 
 
         private async Task<T> dataOrThrow<T>(HttpRequestMessage message)
@@ -49,7 +45,7 @@ namespace MauiGithubSearch.Data.Api.Github
                 var response = await _httpClient.SendAsync(message);
                 var responseBodyJson = await response.Content.ReadAsStringAsync();
                 var statusCodeValue = (int)response.StatusCode;
-                return statusCodeValue switch
+                var result=  statusCodeValue switch
                 {
                     ((int)HttpStatusCode.OK) => JsonSerializer.Deserialize<T>(responseBodyJson),
                     >= ((int)HttpStatusCode.MultipleChoices) and <= ((int)HttpStatusCode.PermanentRedirect) => throw new RedirectException(message: responseBodyJson), // 300番台エラー
@@ -61,6 +57,7 @@ namespace MauiGithubSearch.Data.Api.Github
                     _ => throw new UnknownException(message: responseBodyJson)
 
                 };
+                return result!;
             }
             catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
