@@ -1,3 +1,4 @@
+# https://github.com/dotnet/maui/blob/main/.github/workflows/dotnet-format-daily.yml
 name: Daily code format check
 on:
   workflow_dispatch:
