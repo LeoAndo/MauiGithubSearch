@@ -67,6 +67,8 @@
 	  <None Remove="Domain\Model\" />
 	  <None Remove="CommunityToolkit.Maui" />
 	  <None Remove="CommunityToolkit.Maui.Core" />
+	  <None Remove="Domain\Repository\" />
+	  <None Remove="Data\Repository\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -80,6 +82,8 @@
 	  <Folder Include="Data\Api\Github\Response\" />
 	  <Folder Include="Domain\exception\" />
 	  <Folder Include="Domain\Model\" />
+	  <Folder Include="Domain\Repository\" />
+	  <Folder Include="Data\Repository\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">

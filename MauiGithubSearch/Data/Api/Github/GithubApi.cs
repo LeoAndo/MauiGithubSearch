@@ -25,12 +25,10 @@ namespace MauiGithubSearch.Data.Api.Github
             Console.WriteLine("GithubApi hashcode: " + this.GetHashCode());
             _httpClient = new();
             Data = new();
-            // 共通のヘッダー設定
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
             //_httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
             _httpClient.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
-            _httpClient.Timeout = new(0, 0, 0,30); // 30秒
-            // _httpClient.BaseAddress = new("https://api.github.com");
+            _httpClient.Timeout = new(0, 0, 0,30);
 
         }
         public async Task<SearchRepositoriesResponse> searchRepositories(string query = "flutter", int page = 1, int perPage = 20, string sort = "stars")

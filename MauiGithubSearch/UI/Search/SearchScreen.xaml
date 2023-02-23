@@ -5,6 +5,7 @@
              Title="SearchScreen"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True">
+
     <AbsoluteLayout>
 
         <!-- UiState: Success - START -->
@@ -22,10 +23,10 @@
 
         <!-- UiState: Success データ０件 - START -->
         <ContentView x:Name="emptyItemsLayout" 
-                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                     AbsoluteLayout.LayoutFlags="All"
-                     IsVisible="False">
-            <Label x:Name="lblEmptyItemsMsg" Text="empty Items" VerticalOptions="Center" HorizontalOptions="Center"/>
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding IsShowEmptyItemsLayout}">
+            <Label x:Name="lblEmptyItemsMsg" Text="empty Items"/>
         </ContentView>
         <!-- UiState: Success データ０件 - END -->
 
@@ -33,22 +34,24 @@
         <ContentView x:Name="loadingLayout" 
                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                      AbsoluteLayout.LayoutFlags="All"
-                     IsVisible="False"
+                     IsVisible="{Binding IsLoading}"
                      BackgroundColor="#C0808080">
 
             <ActivityIndicator x:Name="indicator"
-                               IsRunning="True"
-                         VerticalOptions="Center" />
+                               IsRunning="{Binding IsLoading}"/>
 
         </ContentView>
         <!-- UiState: Loading - END -->
 
         <!-- UiState: Error - START -->
-        <ContentView x:Name="errorLayout" 
-                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                     AbsoluteLayout.LayoutFlags="All"
-                     IsVisible="False">
-            <Label x:Name="lblErrorMsg" Text="error Message!!!!!!" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <ContentView x:Name="errorLayout"
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding IsShowErrorLayout}">
+            <StackLayout Spacing="20">
+                <Label x:Name="lblErrorMsg" Text="{Binding ErrorMsg}" />
+                <Button x:Name="btnRetry" Text="Retry" Command="{Binding SearchRepositoriesCommand}"/>
+            </StackLayout>
         </ContentView>
         <!-- UiState: Error - END -->
 
