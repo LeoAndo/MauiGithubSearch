@@ -23,15 +23,17 @@ public partial class DetailScreen : ContentPage
         get;
     }
 
+    private readonly DetailViewModel viewModel;
     public DetailScreen()
 	{
 		InitializeComponent();
+        viewModel = new();
+        BindingContext = viewModel;
     }
 
-    protected override void OnAppearing()
+    protected  override void OnAppearing()
     {
         base.OnAppearing();
-        lblOwnerName.Text = OwnerName;
-        lblRepoName.Text = RepoName;
+        viewModel.GetRepositoryDetail.Execute(null);
     }
 }

@@ -4,18 +4,45 @@
              x:Class="MauiGithubSearch.UI.Detail.DetailScreen"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True"
-             Title="DetailScreen">
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-            <Label
-            x:Name="lblOwnerName" />
-            <Label
-            x:Name="lblRepoName" />
-            <Label
-            x:Name="lblApiResult" />
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="DetailScreen"
+             xmlns:converter="clr-namespace:MauiGithubSearch.UI.Converter">
+
+    <AbsoluteLayout>
+
+        <!-- UiState: Success - START -->
+        <ScrollView x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16">
+            <StackLayout Spacing="16">
+                <Label x:Name="lblOwnerName" />
+                <Label x:Name="lblRepoName" />
+                <Label x:Name="lblApiResult" />
+            </StackLayout>
+        </ScrollView>
+        <!-- UiState: Success - END -->
+
+        <!-- UiState: Loading - START -->
+        <ContentView x:Name="loadingLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="{Binding IsLoading}"
+                     BackgroundColor="#C0808080">
+
+            <ActivityIndicator x:Name="indicator"
+                               IsRunning="{Binding IsLoading}"/>
+
+        </ContentView>
+        <!-- UiState: Loading - END -->
+
+        <!-- UiState: Error - START -->
+        <ContentView x:Name="errorLayout"
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding ErrorMsg, Converter={converter:StringToBoolConverter}}">
+            <StackLayout Spacing="20">
+                <Label x:Name="lblErrorMsg" Text="{Binding ErrorMsg}" />
+                <Button x:Name="btnRetry" Text="Retry" Command="{Binding GetRepositoryDetail}"/>
+            </StackLayout>
+        </ContentView>
+        <!-- UiState: Error - END -->
+
+    </AbsoluteLayout>
 </ContentPage>

@@ -12,7 +12,7 @@
         <!-- UiState: Success - START -->
         <StackLayout x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16" Spacing="16">
             <Entry x:Name="entry" Text="{Binding Query}" ReturnCommand="{Binding SearchRepositoriesCommand}" Placeholder="please input search keyword" />
-            <ListView x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="Handle_ItemTapped" CachingStrategy="RecycleElement" IsVisible="{Binding IsShowErrorLayout, Converter={converter:InverseBoolConverter}}">
+            <ListView x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="listView_ItemTapped" CachingStrategy="RecycleElement" IsVisible="{Binding IsShowErrorLayout, Converter={converter:InverseBoolConverter}}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Name}" Detail="{Binding OwnerName}" />
