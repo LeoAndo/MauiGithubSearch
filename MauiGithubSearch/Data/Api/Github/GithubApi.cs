@@ -10,7 +10,7 @@ namespace MauiGithubSearch.Data.Api.Github
 {
     public class GithubApi
     {
-        private const string GITHUB_ACCESS_TOKEN = "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"; // TODO Please Input Here Your GITHUB_ACCESS_TOKEN.
+        private const string GITHUB_ACCESS_TOKEN = ""; // TODO Please Input Here Your GITHUB_ACCESS_TOKEN.
         private const string GITHUB_API_DOMAIN = "https://api.github.com";
         public static int PER_PAGE = 20;
         private readonly HttpClient  _httpClient;
@@ -19,7 +19,7 @@ namespace MauiGithubSearch.Data.Api.Github
             Console.WriteLine("GithubApi hashcode: " + this.GetHashCode());
             _httpClient = new(new AppHttpLogger(new HttpClientHandler()));
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
+            // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
             _httpClient.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
             _httpClient.Timeout = new(0, 0, 0,30);
 
