@@ -1,6 +1,6 @@
 ## ref: https://github.com/jamesmontemagno/app-myconference/blob/master/.gitignore
 
-.DS_Store
+*.DS_Store
 
 # User-specific files
 *.rsuser
