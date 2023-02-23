@@ -12,8 +12,8 @@ namespace MauiGithubSearch.UI.Search
         private IList<RepositorySummary> items;
         private bool isLoading;
         private string errorMsg;
-        private bool isShowErrorLayout;
         private bool isShowEmptyItemsLayout;
+        private string query;
         private readonly IGithubRepoRepository repository;
 
         public SearchViewModel()
@@ -24,16 +24,23 @@ namespace MauiGithubSearch.UI.Search
             {
                 try
                 {
+                    if(String.IsNullOrEmpty(Query))
+                    {
+                        throw new InputValidationException("please input search keyword");
+                    }
                     IsLoading = true;
-                    await Task.Delay(2000);
-                    Items = await repository.searchRepositories("flutter", 1);
+                    Items = await repository.searchRepositories(Query, 1);
                     IsShowEmptyItemsLayout = (Items.Count == 0);
                     ErrorMsg = "";
-                    IsShowErrorLayout = false;
                 } catch (Exception e )
                 {
-                    ErrorMsg = e.Message;
-                    IsShowErrorLayout = true;
+                    ErrorMsg = e switch
+                    {
+                        ApiException => e.Message,
+                        ValidationException => e.Message,
+                        _ => e.ToString()
+
+                    };
                 } finally
                 {
                     IsLoading = false;
@@ -57,17 +64,16 @@ namespace MauiGithubSearch.UI.Search
             set => SetProperty(ref errorMsg, value);
             get => errorMsg;
         }
-        public bool IsShowErrorLayout
-        {
-            set => SetProperty(ref isShowErrorLayout, value);
-            get => isShowErrorLayout;
-        }
         public bool IsShowEmptyItemsLayout
         {
             set => SetProperty(ref isShowEmptyItemsLayout, value);
             get => isShowEmptyItemsLayout;
         }
-
+        public string Query
+        {
+            set => SetProperty(ref query, value);
+            get => query;
+        }
 
         public ICommand SearchRepositoriesCommand { private set; get; }
     }

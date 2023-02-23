@@ -13,7 +13,7 @@ namespace MauiGithubSearch.Data.Repository
 		}
         public async Task<IList<RepositorySummary>> searchRepositories(string query, int page)
         {
-			var response = await api.searchRepositories();
+			var response = await api.searchRepositories(query: query, page: page);
             return response.toModels();
         }
     }

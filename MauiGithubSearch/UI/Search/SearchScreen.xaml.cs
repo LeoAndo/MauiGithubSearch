@@ -21,7 +21,7 @@ public partial class SearchScreen : ContentPage
         base.OnAppearing();
         Console.WriteLine("call OnAppearing");
         // await VM.LoadDataCommand.ExecuteAsync(null);
-        viewModel.SearchRepositoriesCommand.Execute(null);
+        // viewModel.SearchRepositoriesCommand.Execute(null);
     }
 
     async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

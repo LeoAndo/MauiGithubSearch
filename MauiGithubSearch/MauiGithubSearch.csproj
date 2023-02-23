@@ -69,6 +69,7 @@
 	  <None Remove="CommunityToolkit.Maui.Core" />
 	  <None Remove="Domain\Repository\" />
 	  <None Remove="Data\Repository\" />
+	  <None Remove="UI\Converter\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -84,6 +85,7 @@
 	  <Folder Include="Domain\Model\" />
 	  <Folder Include="Domain\Repository\" />
 	  <Folder Include="Data\Repository\" />
+	  <Folder Include="UI\Converter\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">

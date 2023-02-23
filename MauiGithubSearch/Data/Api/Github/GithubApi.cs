@@ -31,7 +31,7 @@ namespace MauiGithubSearch.Data.Api.Github
             _httpClient.Timeout = new(0, 0, 0,30);
 
         }
-        public async Task<SearchRepositoriesResponse> searchRepositories(string query = "flutter", int page = 1, int perPage = 20, string sort = "stars")
+        public async Task<SearchRepositoriesResponse> searchRepositories(string query, int page, int perPage = 20, string sort = "stars")
         {
             var url = GITHUB_API_DOMAIN + $"/search/repositories?q={query}&page={page}&per_page={perPage}&sort={sort}";
             return await dataOrThrow<SearchRepositoriesResponse>(new(HttpMethod.Get, url));

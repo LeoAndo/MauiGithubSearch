@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiGithubSearch.UI.Search.SearchScreen"
              Title="SearchScreen"
+             xmlns:converter="clr-namespace:MauiGithubSearch.UI.Converter"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True">
 
     <AbsoluteLayout>
 
         <!-- UiState: Success - START -->
-        <StackLayout x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16" Spacing="16" IsVisible="True">
-            <Entry x:Name="entry" Placeholder="please input search keyword" />
-            <ListView x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="Handle_ItemTapped" CachingStrategy="RecycleElement">
+        <StackLayout x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16" Spacing="16">
+            <Entry x:Name="entry" Text="{Binding Query}" ReturnCommand="{Binding SearchRepositoriesCommand}" Placeholder="please input search keyword" />
+            <ListView x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="Handle_ItemTapped" CachingStrategy="RecycleElement" IsVisible="{Binding IsShowErrorLayout, Converter={converter:InverseBoolConverter}}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Name}" Detail="{Binding OwnerName}" />
@@ -47,7 +48,7 @@
         <ContentView x:Name="errorLayout"
                      AbsoluteLayout.LayoutBounds="0.5,0.5"
                      AbsoluteLayout.LayoutFlags="PositionProportional"
-                     IsVisible="{Binding IsShowErrorLayout}">
+                     IsVisible="{Binding ErrorMsg, Converter={converter:StringToBoolConverter}}">
             <StackLayout Spacing="20">
                 <Label x:Name="lblErrorMsg" Text="{Binding ErrorMsg}" />
                 <Button x:Name="btnRetry" Text="Retry" Command="{Binding SearchRepositoriesCommand}"/>
