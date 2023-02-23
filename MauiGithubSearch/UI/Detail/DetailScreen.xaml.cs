@@ -12,12 +12,12 @@ public partial class DetailScreen : ContentPage
         return $"{nameof(DetailScreen)}?ownerName={ownerName}&repoName={repoName}";
     }
 
-    public string OwnerName
-	{
-		set;
-		get;
-	}
-    public string RepoName
+    public string? OwnerName
+    {
+        set;
+        get;
+    }
+    public string? RepoName
     {
         set;
         get;
@@ -34,6 +34,10 @@ public partial class DetailScreen : ContentPage
     protected  override void OnAppearing()
     {
         base.OnAppearing();
+        viewModel.OwnerName = OwnerName;
+        viewModel.RepoName = RepoName;
+        lblRepoName.Text = $"repo: {RepoName}";
+        lblOwnerName.Text = $"owner: {OwnerName}";
         viewModel.GetRepositoryDetail.Execute(null);
     }
 }

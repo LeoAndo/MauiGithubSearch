@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiGithubSearch.UI.Detail.DetailScreen"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              ios:Page.UseSafeArea="True"
              Title="DetailScreen"
              xmlns:converter="clr-namespace:MauiGithubSearch.UI.Converter">
@@ -12,9 +13,15 @@
         <!-- UiState: Success - START -->
         <ScrollView x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16">
             <StackLayout Spacing="16">
-                <Label x:Name="lblOwnerName" />
-                <Label x:Name="lblRepoName" />
-                <Label x:Name="lblApiResult" />
+                <toolkit:AvatarView ImageSource="{Binding OwnerAvatarUrl}" CornerRadius="120" WidthRequest="240" HeightRequest="240" />
+                <Label x:Name="lblRepoName" Style="{DynamicResource TitleStyle}" />
+                <Label x:Name="lblOwnerName" Style="{DynamicResource SubtitleStyle}" />
+                <Label Text="{Binding Description}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding Language}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding OpenIssuesCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding ForksCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding StargazersCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding WatchersCount}" Style="{DynamicResource BodyStyle}" />
             </StackLayout>
         </ScrollView>
         <!-- UiState: Success - END -->

@@ -25,4 +25,3 @@ namespace MauiGithubSearch.Domain.Model
 
     }
 }
-
