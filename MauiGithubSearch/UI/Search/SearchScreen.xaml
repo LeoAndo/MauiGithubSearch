@@ -35,8 +35,7 @@
         <ContentView x:Name="loadingLayout" 
                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                      AbsoluteLayout.LayoutFlags="All"
-                     IsVisible="{Binding IsLoading}"
-                     BackgroundColor="#C0808080">
+                     IsVisible="{Binding IsLoading}">
 
             <ActivityIndicator x:Name="indicator"
                                IsRunning="{Binding IsLoading}" />
