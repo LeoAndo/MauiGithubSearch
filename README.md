@@ -19,10 +19,6 @@
 ## macos
 https://user-images.githubusercontent.com/16476224/221016214-a5e638ae-0fb5-4d3f-8f8b-6d1077325510.mov
 
-
-
-
-
 # capture: 異常系
 
 復旧手段があることの確認<br>
