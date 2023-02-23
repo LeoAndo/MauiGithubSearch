@@ -19,7 +19,7 @@ namespace MauiGithubSearch.Data.Api.Github
             Console.WriteLine("GithubApi hashcode: " + this.GetHashCode());
             _httpClient = new(new AppHttpLogger(new HttpClientHandler()));
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-            if(!String.IsNullOrEmpty(GITHUB_ACCESS_TOKEN))
+            if (!String.IsNullOrEmpty(GITHUB_ACCESS_TOKEN))
             {
                 _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
             }
