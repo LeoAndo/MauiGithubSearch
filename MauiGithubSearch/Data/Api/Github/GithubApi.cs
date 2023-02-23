@@ -59,10 +59,10 @@ namespace MauiGithubSearch.Data.Api.Github
                 };
                 return result!;
             }
-            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException || ex is WebException)
             {
-                // TaskCanceledExceptionは接続タイムアウト時にthrowされる
-                // HttpRequestExceptionは、通信OFF時にthrowされる
+                // TaskCanceledException: 接続タイムアウト時にthrowされる
+                // WebException: 機内モード時にthrowされる
                 throw new NetworkException(message: ex.Message);
             }
         }
