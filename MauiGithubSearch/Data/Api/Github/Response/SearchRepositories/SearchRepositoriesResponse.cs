@@ -4,14 +4,14 @@ using MauiGithubSearch.Domain.Model;
 
 namespace MauiGithubSearch.Data.Api.Github.Response
 {
-    public class SearchRepositoriesResponse
+    public record SearchRepositoriesResponse
     {
         [JsonPropertyName("incomplete_results")]
-        public bool IncompleteResults { get; set; }
+        public required  bool IncompleteResults { get; set; }
         [JsonPropertyName("total_count")]
-        public int TotalCount { get; set; }
+        public required int TotalCount { get; set; }
         [JsonPropertyName("items")]
-        public IList<Item> Items { get; set; }
+        public required IList<Item> Items { get; set; }
     }
 }
 

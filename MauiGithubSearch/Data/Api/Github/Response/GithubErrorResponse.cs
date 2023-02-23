@@ -6,12 +6,12 @@ using System.Text.Json.Serialization;
 
 namespace MauiGithubSearch.Data.Api.Github.Response
 {
-    public class GithubErrorResponse
+    public record GithubErrorResponse
     {
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public required string Message { get; set; }
         [JsonPropertyName("documentation_url")]
-        public string DocumentationUrl { get; set; }
+        public required string DocumentationUrl { get; set; }
     }
 }
 

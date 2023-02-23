@@ -3,14 +3,14 @@ using System.Text.Json.Serialization;
 
 namespace MauiGithubSearch.Data.Api.Github.Response
 {
-    public class Item
+    public record Item
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         [JsonPropertyName("owner")]
-        public Owner Owner { get; set; }
+        public required Owner Owner { get; set; }
     }
 }
 
