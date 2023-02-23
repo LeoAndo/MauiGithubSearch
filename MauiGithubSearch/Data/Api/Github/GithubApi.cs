@@ -19,7 +19,10 @@ namespace MauiGithubSearch.Data.Api.Github
             Console.WriteLine("GithubApi hashcode: " + this.GetHashCode());
             _httpClient = new(new AppHttpLogger(new HttpClientHandler()));
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-            // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
+            if(!String.IsNullOrEmpty(GITHUB_ACCESS_TOKEN))
+            {
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {GITHUB_ACCESS_TOKEN}");
+            }
             _httpClient.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
             _httpClient.Timeout = new(0, 0, 0,30);
 
@@ -61,9 +64,10 @@ namespace MauiGithubSearch.Data.Api.Github
             }
             catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException || ex is WebException)
             {
+                Console.WriteLine($"error {ex.ToString()}");
                 // TaskCanceledException: 接続タイムアウト時にthrowされる
                 // WebException: 機内モード時にthrowされる
-                throw new NetworkException(message: ex.Message);
+                throw new NetworkException(message: "please check network state.");
             }
         }
     }
