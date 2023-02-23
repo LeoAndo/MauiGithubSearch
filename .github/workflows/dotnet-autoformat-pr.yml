@@ -14,6 +14,6 @@ jobs:
     - name: 'Autoformat'
       uses: rolfbjarne/autoformat@v0.2
       with:
-        script: 'dotnet format MauiGithubSearch.sln --no-restore
+        script: 'dotnet format MauiGithubSearch.sln --no-restore'
         onlyFilesModifiedInPullRequest: true
         git_commit_message: 'Auto-format source code'
