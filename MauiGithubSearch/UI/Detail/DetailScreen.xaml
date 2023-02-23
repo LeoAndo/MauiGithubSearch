@@ -34,7 +34,7 @@
                      BackgroundColor="#C0808080">
 
             <ActivityIndicator x:Name="indicator"
-                               IsRunning="{Binding IsLoading}"/>
+                               IsRunning="{Binding IsLoading}" />
 
         </ContentView>
         <!-- UiState: Loading - END -->
