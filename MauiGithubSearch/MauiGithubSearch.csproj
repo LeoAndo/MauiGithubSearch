@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<!-- projectのNull Safty対応 - START-->
+		<Nullable>enable</Nullable>
+		<!-- projectのNull Safty対応 - END-->
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -70,6 +73,8 @@
 	  <None Remove="Domain\Repository\" />
 	  <None Remove="Data\Repository\" />
 	  <None Remove="UI\Converter\" />
+	  <None Remove="Data\Api\Github\Response\FetchRepositoryDetail\" />
+	  <None Remove="Data\Api\Github\Response\SearchRepositories\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Data\" />
@@ -86,6 +91,8 @@
 	  <Folder Include="Domain\Repository\" />
 	  <Folder Include="Data\Repository\" />
 	  <Folder Include="UI\Converter\" />
+	  <Folder Include="Data\Api\Github\Response\FetchRepositoryDetail\" />
+	  <Folder Include="Data\Api\Github\Response\SearchRepositories\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="UI\Search\SearchScreen.xaml">

@@ -6,10 +6,10 @@ namespace MauiGithubSearch.UI
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected bool SetProperty<T>(ref T storage, T value,
-                                      [CallerMemberName] string propertyName = null)
+                                      [CallerMemberName] string? propertyName = null)
         {
             if (Object.Equals(storage, value))
                 return false;
@@ -19,7 +19,7 @@ namespace MauiGithubSearch.UI
             return true;
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

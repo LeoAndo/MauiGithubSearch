@@ -12,26 +12,32 @@ public partial class DetailScreen : ContentPage
         return $"{nameof(DetailScreen)}?ownerName={ownerName}&repoName={repoName}";
     }
 
-    public string OwnerName
-	{
-		set;
-		get;
-	}
-    public string RepoName
+    public string? OwnerName
+    {
+        set;
+        get;
+    }
+    public string? RepoName
     {
         set;
         get;
     }
 
+    private readonly DetailViewModel viewModel;
     public DetailScreen()
 	{
 		InitializeComponent();
+        viewModel = new();
+        BindingContext = viewModel;
     }
 
-    protected override void OnAppearing()
+    protected  override void OnAppearing()
     {
         base.OnAppearing();
-        lblOwnerName.Text = OwnerName;
-        lblRepoName.Text = RepoName;
+        viewModel.OwnerName = OwnerName;
+        viewModel.RepoName = RepoName;
+        lblRepoName.Text = $"repo: {RepoName}";
+        lblOwnerName.Text = $"owner: {OwnerName}";
+        viewModel.GetRepositoryDetail.Execute(null);
     }
 }

@@ -24,15 +24,15 @@ public partial class SearchScreen : ContentPage
         // viewModel.SearchRepositoriesCommand.Execute(null);
     }
 
-    async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+    async void listView_ItemTapped(System.Object sender, Microsoft.Maui.Controls.ItemTappedEventArgs e)
     {
         if (e.Item == null)
             return;
 
         //Deselect Item
-        ((ListView)sender).SelectedItem = null;
+        ((ListView)sender).SelectedItem = null; // 選択時のグレー色を消す
 
-        var item = (RepositorySummary) e.Item;
+        var item = (RepositorySummary)e.Item;
         await Shell.Current.GoToAsync(DetailScreen.buildRoute(item.OwnerName, item.Name));
     }
 }

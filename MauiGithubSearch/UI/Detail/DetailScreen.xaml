@@ -3,19 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiGithubSearch.UI.Detail.DetailScreen"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              ios:Page.UseSafeArea="True"
-             Title="DetailScreen">
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-            <Label
-            x:Name="lblOwnerName" />
-            <Label
-            x:Name="lblRepoName" />
-            <Label
-            x:Name="lblApiResult" />
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="DetailScreen"
+             xmlns:converter="clr-namespace:MauiGithubSearch.UI.Converter">
+
+    <AbsoluteLayout>
+
+        <!-- UiState: Success - START -->
+        <ScrollView x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16">
+            <StackLayout Spacing="16">
+                <toolkit:AvatarView ImageSource="{Binding OwnerAvatarUrl}" CornerRadius="120" WidthRequest="240" HeightRequest="240" />
+                <Label x:Name="lblRepoName" Style="{DynamicResource TitleStyle}" />
+                <Label x:Name="lblOwnerName" Style="{DynamicResource SubtitleStyle}" />
+                <Label Text="{Binding Description}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding Language}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding OpenIssuesCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding ForksCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding StargazersCount}" Style="{DynamicResource BodyStyle}" />
+                <Label Text="{Binding WatchersCount}" Style="{DynamicResource BodyStyle}" />
+            </StackLayout>
+        </ScrollView>
+        <!-- UiState: Success - END -->
+
+        <!-- UiState: Loading - START -->
+        <ContentView x:Name="loadingLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="{Binding IsLoading}"
+                     BackgroundColor="#C0808080">
+
+            <ActivityIndicator x:Name="indicator"
+                               IsRunning="{Binding IsLoading}"/>
+
+        </ContentView>
+        <!-- UiState: Loading - END -->
+
+        <!-- UiState: Error - START -->
+        <ContentView x:Name="errorLayout"
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding ErrorMsg, Converter={converter:StringToBoolConverter}}">
+            <StackLayout Spacing="20">
+                <Label x:Name="lblErrorMsg" Text="{Binding ErrorMsg}" />
+                <Button x:Name="btnRetry" Text="Retry" Command="{Binding GetRepositoryDetail}"/>
+            </StackLayout>
+        </ContentView>
+        <!-- UiState: Error - END -->
+
+    </AbsoluteLayout>
 </ContentPage>
