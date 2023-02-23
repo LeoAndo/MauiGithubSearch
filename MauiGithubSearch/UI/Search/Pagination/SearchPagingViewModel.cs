@@ -38,7 +38,7 @@ namespace MauiGithubSearch.UI.Search.Pagination
             {
                 try
                 {
-                    if(IsLastPage) return;
+                    if (IsLastPage) return;
 
                     if (String.IsNullOrEmpty(Query))
                     {

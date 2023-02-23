@@ -36,7 +36,7 @@ public partial class SearchPagingScreen : ContentPage
 
     void listView_ItemAppearing(System.Object sender, Microsoft.Maui.Controls.ItemVisibilityEventArgs e)
     {
-        var item = (RepositorySummary) e.Item; // 画面上に表示されているリストアイテム
+        var item = (RepositorySummary)e.Item; // 画面上に表示されているリストアイテム
         if (viewModel.Items.Last() == item && !viewModel.IsLastPage)
         {
             viewModel.SearchRepositoriesCommand.Execute(null);
