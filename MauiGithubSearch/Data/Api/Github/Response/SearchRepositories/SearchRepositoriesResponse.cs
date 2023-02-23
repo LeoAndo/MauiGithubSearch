@@ -6,11 +6,6 @@ namespace MauiGithubSearch.Data.Api.Github.Response
 {
     public class SearchRepositoriesResponse
     {
-        /// <summary>
-        ///     val incomplete_results: Boolean,
-        ///     val items: List<Item>,
-        ///     val total_count: Int
-        /// </summary>
         [JsonPropertyName("incomplete_results")]
         public bool IncompleteResults { get; set; }
         [JsonPropertyName("total_count")]
