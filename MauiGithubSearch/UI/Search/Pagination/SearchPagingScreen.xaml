@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGithubSearch.UI.Search.Pagination.SearchPagingScreen"
+             Title="SearchPagingScreen"
+             xmlns:converter="clr-namespace:MauiGithubSearch.UI.Converter"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True">
+
+    <AbsoluteLayout>
+
+        <!-- UiState: Success - START -->
+        <StackLayout x:Name="successLayout" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="16" Spacing="16">
+            <Entry x:Name="entry" Text="{Binding Query}" ReturnCommand="{Binding RefreshCommand}" Placeholder="please input search keyword" />
+            <ListView  ItemAppearing="listView_ItemAppearing" x:Name="listView" VerticalScrollBarVisibility="Always" ItemsSource="{Binding Items}" ItemTapped="listView_ItemTapped" CachingStrategy="RecycleElement" IsVisible="{Binding IsShowErrorLayout, Converter={converter:InverseBoolConverter}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" Detail="{Binding OwnerName}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <!-- UiState: Success - END -->
+
+        <!-- UiState: Success データ０件 - START -->
+        <ContentView x:Name="emptyItemsLayout" 
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding IsShowEmptyItemsLayout}">
+            <Label x:Name="lblEmptyItemsMsg" Text="empty Items"/>
+        </ContentView>
+        <!-- UiState: Success データ０件 - END -->
+
+        <!-- UiState: Error - START -->
+        <ContentView x:Name="errorLayout"
+                     AbsoluteLayout.LayoutBounds="0.5,0.5"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     IsVisible="{Binding ErrorMsg, Converter={converter:StringToBoolConverter}}">
+            <StackLayout Spacing="20">
+                <Label x:Name="lblErrorMsg" Text="{Binding ErrorMsg}" />
+                <Button x:Name="btnRetry" Text="Retry" Command="{Binding SearchRepositoriesCommand}"/>
+            </StackLayout>
+        </ContentView>
+        <!-- UiState: Error - END -->
+
+        <!-- UiState: Loading - START -->
+        <ContentView x:Name="loadingLayout" 
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="{Binding IsLoading}">
+
+            <ActivityIndicator x:Name="indicator"
+                               IsRunning="{Binding IsLoading}" />
+
+        </ContentView>
+        <!-- UiState: Loading - END -->
+    </AbsoluteLayout>
+
+</ContentPage>
