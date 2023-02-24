@@ -10,8 +10,8 @@ public partial class SearchScreen : ContentPage
     private readonly SearchViewModel viewModel;
 
     public SearchScreen()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         viewModel = new SearchViewModel();
         BindingContext = viewModel;
     }

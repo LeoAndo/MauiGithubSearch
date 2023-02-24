@@ -14,7 +14,7 @@ namespace MauiGithubSearch.Domain.exception
         public ApplicationException(string message, Exception inner) : base(message, inner)
         {
         }
-      
+
     }
 }
 

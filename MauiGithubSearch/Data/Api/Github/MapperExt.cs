@@ -11,7 +11,7 @@ namespace MauiGithubSearch.Data.Api.Github
             IList<RepositorySummary> list = new List<RepositorySummary>();
             foreach (Item item in response.Items)
             {
-                list.Add(new RepositorySummary(item.Id,item.Name,item.Owner.Login));
+                list.Add(new RepositorySummary(item.Id, item.Name, item.Owner.Login));
             }
             return list;
         }

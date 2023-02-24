@@ -24,7 +24,7 @@ namespace MauiGithubSearch.UI.Search
             {
                 try
                 {
-                    if(String.IsNullOrEmpty(Query))
+                    if (String.IsNullOrEmpty(Query))
                     {
                         throw new InputValidationException("please input search keyword");
                     }
@@ -32,7 +32,8 @@ namespace MauiGithubSearch.UI.Search
                     Items = await repository.searchRepositories(Query, 1);
                     IsShowEmptyItemsLayout = (Items.Count == 0);
                     ErrorMsg = "";
-                } catch (Exception e )
+                }
+                catch (Exception e)
                 {
                     ErrorMsg = e switch
                     {
@@ -41,7 +42,8 @@ namespace MauiGithubSearch.UI.Search
                         _ => e.ToString()
 
                     };
-                } finally
+                }
+                finally
                 {
                     IsLoading = false;
                 }

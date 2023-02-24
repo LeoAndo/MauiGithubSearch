@@ -25,13 +25,13 @@ public partial class DetailScreen : ContentPage
 
     private readonly DetailViewModel viewModel;
     public DetailScreen()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         viewModel = new();
         BindingContext = viewModel;
     }
 
-    protected  override void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         viewModel.OwnerName = OwnerName;

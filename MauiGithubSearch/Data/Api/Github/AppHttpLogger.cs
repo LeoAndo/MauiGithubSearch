@@ -3,7 +3,7 @@ namespace MauiGithubSearch.Data.Api.Github
 {
     public class AppHttpLogger : DelegatingHandler
     {
-        public AppHttpLogger(HttpMessageHandler innerHandler): base(innerHandler)
+        public AppHttpLogger(HttpMessageHandler innerHandler) : base(innerHandler)
         {
         }
 

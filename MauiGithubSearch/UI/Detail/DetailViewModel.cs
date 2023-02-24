@@ -8,8 +8,8 @@ using System.Windows.Input;
 
 namespace MauiGithubSearch.UI.Detail
 {
-	public class DetailViewModel: ViewModel
-	{
+    public class DetailViewModel : ViewModel
+    {
         private string? ownerAvatarUrl;
         private string? stargazersCount;
         private string? forksCount;
